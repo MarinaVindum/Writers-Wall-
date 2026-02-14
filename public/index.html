@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Writer's Wall</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #c3e4ff, #f5f5f5);
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #prompt-box {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #444;
+      min-height: 80px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4a90e2;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #357ac9;
+    }
+    textarea {
+      width: 60%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #story-output {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      min-height: 80px;
+      font-size: 18px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Writer's Wall</h1>
+  <p>Click the button to generate a world‑building prompt.</p>
+
+  <button onclick="generatePrompt()">Generate Prompt</button>
+
+  <div id="prompt-box">Your prompt will appear here...</div>
+
+  <h2 style="margin-top:40px;">Story Continuation</h2>
+  <p>Type the beginning of a story and I'll help you continue it.</p>
+
+  <textarea id="story-input" placeholder="Once upon a time..." rows="4"></textarea>
+  <br>
+  <button onclick="continueStory()">Continue Story</button>
+
+  <div id="story-output"></div>
+
+  <script>
+    const prompts = [
+      "Describe a city built inside the skeleton of a giant creature.",
+      "What is a festival celebrated in your world, and what strange tradition does it include?",
+      "Your world has two moons. How does this affect daily life?",
+      "A rare storm appears once every 100 years. What happens when it arrives?",
+      "Magic is powered by emotions. What does that mean for society?",
+      "A forgotten kingdom has resurfaced from underground. What do they want?",
+      "Your world has floating islands. Who lives on them and why?"
+    ];
+
+    function generatePrompt() {
+      const randomIndex = Math.floor(Math.random() * prompts.length);
+      document.getElementById("prompt-box").innerText = prompts[randomIndex];
+    }
+
+    function continueStory() {
+      const userText = document.getElementById("story-input").value;
+
+      if (!userText.trim()) {
+        document.getElementById("story-output").innerText = "Please type something first!";
+        return;
+      }
+
+      const continuations = [
+        "…and that was only the beginning of the mystery that would change everything.",
+        "…but little did they know, someone had been watching the entire time.",
+        "…and the world around them shifted in a way they couldn’t explain.",
+        "…which led them deeper into a secret they were never meant to uncover.",
+        "…and suddenly, the air shimmered with a strange, ancient magic.",
+        "…but the path ahead was far more dangerous than they realized.",
+        "…and a new ally appeared, offering help — for a price."
+      ];
+
+      const randomIndex = Math.floor(Math.random() * continuations.length);
+
+      document.getElementById("story-output").innerText =
+        userText + " " + continuations[randomIndex];
+    }
+  </script>
+</body>
+</html>
